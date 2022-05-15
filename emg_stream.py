@@ -7,6 +7,7 @@ SERIAL_PORT_PATH = "/dev/cu.usbmodem143201"
 
 hackeeg = hackeeg.HackEEGBoard(SERIAL_PORT_PATH)
 hackeeg.connect()
+hackeeg.blink_board_led()
 hackeeg.sdatac()
 hackeeg.reset()
 hackeeg.disable_all_channels()
@@ -38,6 +39,7 @@ hackeeg.messagepack_mode()
 
 # Read data continuously
 hackeeg.rdatac()
+hackeeg.blink_board_led()
 hackeeg.start()
 
 
