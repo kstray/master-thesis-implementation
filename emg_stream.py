@@ -7,9 +7,8 @@ SERIAL_PORT_PATH = "/dev/cu.usbmodem143201"
 
 hackeeg = hackeeg.HackEEGBoard(SERIAL_PORT_PATH)
 hackeeg.connect()
-hackeeg.sdatac() # what does this do??
+hackeeg.sdatac()
 hackeeg.reset()
-
 hackeeg.disable_all_channels()
 
 # Set sampling rate
@@ -37,7 +36,7 @@ hackeeg.wreg(ads1299.MISC1, ads1299.MISC1_const)
 hackeeg.messagepack_mode()
 #hackeeg.jsonlines_mode()
 
-
+# Read data continuously
 hackeeg.rdatac()
 hackeeg.start()
 
