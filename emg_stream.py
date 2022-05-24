@@ -26,13 +26,13 @@ hackeeg.enable_all_channels()
 
 # Configure channel input and gain
 for channel in range(1, 9):
-    hackeeg.wreg(ads1299.CHnSET + channel, ads1299.ELECTRODE_INPUT | ads1299.GAIN_1X)
+    hackeeg.wreg(ads1299.CHnSET + channel, ads1299.ELECTRODE_INPUT | ads1299.GAIN_24X)
 
 # Bipolar mode - each channel is the differential voltage between adjacent electrodes
-hackeeg.wreg(ads1299.MISC1, ads1299.MISC1_const)
+# hackeeg.wreg(ads1299.MISC1, ads1299.MISC1_const)
 # For unipolar mode, uncomment the following line to set the SRB1 bit,
 # which sends mid-supply voltage to the N inputs
-# hackeeg.wreg(ads1299.MISC1, ads1299.SRB1 | ads1299.MISC1_const)
+hackeeg.wreg(ads1299.MISC1, ads1299.SRB1 | ads1299.MISC1_const)
 
 # Choose bias as an average of the first three channels
 #hackeeg.wreg(ads1299.BIAS_SENSP, ads1299.BIAS1P | ads1299.BIAS2P | ads1299.BIAS3P)
@@ -44,7 +44,7 @@ hackeeg.wreg(ads1299.MISC1, ads1299.MISC1_const)
 hackeeg.messagepack_mode()
 
 # Stream data to OpenBCI GUI via Lab Streaming Layer (LSL)
-lsl_info = StreamInfo('EMG-stream', 'EMG', CHANNELS, SAMPLES_PER_SECOND, 'int32')
+lsl_info = StreamInfo('EMG-stream', 'EEG', CHANNELS, SAMPLES_PER_SECOND, 'int32')
 lsl_outlet = StreamOutlet(lsl_info)
 
 # Read data continuously
