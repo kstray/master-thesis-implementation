@@ -6,6 +6,7 @@ import time
 import hackeeg
 from hackeeg import ads1299
 from pylsl import StreamInfo, StreamOutlet
+import numpy as np
 
 
 SERIAL_PORT_PATH = "/dev/cu.usbmodem143301"
@@ -54,23 +55,25 @@ hackeeg.rdatac()
 
 
 samples = []
-while True:
+t_end = time.time() + 5
+channel_1 = np.empty((1, 5000))
+while time.time() < t_end:
     result = hackeeg.read_rdatac_response()
     if result:
-        data = result.get(hackeeg.MpDataKey)
         samples.append(result)
+        data = result.get(hackeeg.MpDataKey)
         if data:
             timestamp = result.get('timestamp')
             channel_data = result.get('channel_data')
-            print(f"timestamp:{timestamp} ", end='')
-            for channel_number, sample in enumerate(channel_data):
-                print(f"{channel_number + 1}:{sample} ", end='')
-            print()
-            lsl_outlet.push_sample(channel_data)
             
+
+
+        
     else:
         print("no data to decode")
         print(f"result: {result}")
+
+
 
 
 
