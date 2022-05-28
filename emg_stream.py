@@ -36,11 +36,11 @@ for channel in range(1, 9):
 hackeeg.wreg(ads1299.MISC1, ads1299.SRB1 | ads1299.MISC1_const)
 
 # Choose bias as an average of the first three channels
-#hackeeg.wreg(ads1299.BIAS_SENSP, ads1299.BIAS1P | ads1299.BIAS2P | ads1299.BIAS3P)
-#hackeeg.wreg(ads1299.BIAS_SENSN, ads1299.BIAS1N | ads1299.BIAS2N | ads1299.BIAS3N)
+hackeeg.wreg(ads1299.BIAS_SENSP, ads1299.BIAS1P | ads1299.BIAS2P | ads1299.BIAS3P)
+hackeeg.wreg(ads1299.BIAS_SENSN, ads1299.BIAS1N | ads1299.BIAS2N | ads1299.BIAS3N)
 # Use internal BIASREF signal source and turn on bias amplifier
 # route BIASOUT to bias electrode: JP9: 2-3, JP6: NC (not connected)
-#hackeeg.wreg(ads1299.CONFIG3, ads1299.BIASREF_INT | ads1299.PD_BIAS |ads1299.CONFIG3_const)
+hackeeg.wreg(ads1299.CONFIG3, ads1299.BIASREF_INT | ads1299.PD_BIAS |ads1299.CONFIG3_const)
 
 hackeeg.messagepack_mode()
 
