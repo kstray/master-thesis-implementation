@@ -38,7 +38,7 @@ hackeeg.rdatac()
 print("Start")
 
 offset = []
-t_end = time.time() + 5
+t_end = time.time() + 10
 while time.time() < t_end:
     result = hackeeg.read_rdatac_response()
     if result:
