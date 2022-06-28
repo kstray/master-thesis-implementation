@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import time
+# import datetime
 import hackeeg
 from hackeeg import ads1299
 
@@ -38,11 +39,19 @@ hackeeg.rdatac()
 print("Start")
 
 offset = []
-t_end = time.time() + 10
+# timestamp = []
+t_end = time.time() + 20
+# start = datetime.datetime.now()
+# last = start
 while time.time() < t_end:
     result = hackeeg.read_rdatac_response()
     if result:
         offset.append(result)
+        # now = datetime.datetime.now()
+        # if ((now - last) > datetime.timedelta(seconds=3)):
+        #     print("now")
+        #     last = now
+        #     timestamp.append(result.get('timestamp'))
     else:
         print("no data to decode")
         print(f"result: {result}")
@@ -50,7 +59,7 @@ while time.time() < t_end:
 print("Sampling complete")
 
 hackeeg.sdatac()
-hackeeg.stop()
+# hackeeg.stop()
 
 
 # Process offset data

@@ -1,4 +1,6 @@
 .vscode
 Pipfile
-*.npy
+*old_data/
 *.png
+*.txt.npy
+.DS_Store
